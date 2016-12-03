@@ -4,13 +4,15 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
+
+import com.spittr.web.HomeController;
+
 import static
 org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static
 org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static
 org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
-import spittr.web.HomeController;
 
 public class HomeControllerTest {
 	@Test

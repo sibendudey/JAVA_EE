@@ -1,5 +1,6 @@
-package spittr.web;
+package com.spittr.web;
 
+import javax.servlet.http.Part;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -9,9 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestPart;
 
-import spittr.Spitter;
-import spittr.data.SpitterRepository;
+import com.spittr.Spitter;
+import com.spittr.data.SpitterRepository;
 
 @Controller
 @RequestMapping(value="/spitter")
@@ -30,7 +32,7 @@ public class SpitterController {
 	}
 	
 	@RequestMapping( value = "/register" , method = RequestMethod.POST)
-	public String processRegistration( @Valid Spitter spitter , Errors errors)	{
+	public String processRegistration(@RequestPart("profilePicture") Part profilePicture, @Valid Spitter spitter , Errors errors)	{
 		
 		System.out.println(spitter.getFirstName()  + "..." +  spitter.getLastName() );
 		if ( errors.hasErrors())	{

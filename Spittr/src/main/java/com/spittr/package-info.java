@@ -5,4 +5,4 @@
  * @author deysi
  *
  */
-package spittr;
+package com.spittr;

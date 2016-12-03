@@ -13,7 +13,7 @@
 </head>
 <body>
 <h1> Register </h1>
-<sf:form method="POST" commandName="spitter">
+<sf:form method="POST" commandName="spitter" encType="multipart/form-data" >
 <sf:errors path="*" element="div" cssClass="errors" />
 First Name: <sf:input path="firstName" />
 <!--<sf:errors path="firstName" /> <br/> -->
@@ -23,7 +23,9 @@ UserName: <sf:input path="userName" />
 <!--<sf:errors path="userName" /> <br/> -->
 Password: <sf:input path="password" />
 <!--<sf:errors path="password" />	<br/> -->
+Upload Profile picture: <input type="file" name="profilePicture" />
 <input type="submit" value="Register" />
+
 </sf:form>
 </body>
 </html>

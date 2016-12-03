@@ -1,4 +1,4 @@
-package spittr.web;
+package com.spittr.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import spittr.data.SpittleRepository;
+import com.spittr.data.SpittleRepository;
 
 @Controller
 @RequestMapping( "/spittle")

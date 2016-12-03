@@ -1,6 +1,6 @@
-package spittr.data;
+package com.spittr.data;
 
-import spittr.Spitter;
+import com.spittr.Spitter;
 
 public interface SpitterRepository {
 	public void save(Spitter spitter);
