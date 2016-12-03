@@ -18,6 +18,11 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-validator</artifactId>
+		<version>4.2.0.Final</version>
+	</dependency>
 		<!-- Spring Core -->
 		<dependency>
 			<groupId>org.springframework</groupId>
