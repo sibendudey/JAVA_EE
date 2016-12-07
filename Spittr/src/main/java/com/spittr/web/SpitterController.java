@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spittr.Spitter;
 import com.spittr.data.SpitterRepository;
@@ -32,7 +33,7 @@ public class SpitterController {
 	}
 	
 	@RequestMapping( value = "/register" , method = RequestMethod.POST)
-	public String processRegistration(@RequestPart("profilePicture") Part profilePicture, @Valid Spitter spitter , Errors errors)	{
+	public String processRegistration(@RequestPart("profilePicture") Part profilePicture, @Valid Spitter spitter , Errors errors, RedirectAttributes model)	{
 		
 		System.out.println(spitter.getFirstName()  + "..." +  spitter.getLastName() );
 		if ( errors.hasErrors())	{
@@ -41,13 +42,20 @@ public class SpitterController {
 		}
 		
 		spitterRepository.save(spitter);
-		return "redirect:/spitter/" + spitter.getUserName();
+	
+		model.addAttribute("username", spitter.getUserName());
+		// {username} placeholder derives its value from model map.
+		return "redirect:/spitter/{username}";
 	}
 	
 	@RequestMapping( value = "/{userName}" , method = RequestMethod.GET)
 	public String showSpitterProfile(@PathVariable String userName , Model model)	{
-		Spitter spitter = spitterRepository.findByUserName(userName);
-		model.addAttribute(spitter);
+		
+		//Spitter spitter = spitterRepository.findByUserName(userName);
+		
+		if ( !model.containsAttribute("spitter"))	{
+			model.addAttribute(spitterRepository.findByUserName(userName));
+		}
 		return "profile";
 	}
 }
