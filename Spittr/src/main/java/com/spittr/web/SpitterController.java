@@ -3,24 +3,26 @@ package com.spittr.web;
 import javax.servlet.http.Part;
 import javax.validation.Valid;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spittr.Spitter;
 import com.spittr.data.SpitterRepository;
 
-@Controller
+@RestController
 @RequestMapping(value="/spitter")
 public class SpitterController {
 	
-	private SpitterRepository spitterRepository = null;
+	
+	@Autowired
+	private SpitterRepository spitterRepository;
 	/*public SpitterController(SpitterRepository spitterRepository)	{
 		this.spitterRepository = spitterRepository;
 	}*/

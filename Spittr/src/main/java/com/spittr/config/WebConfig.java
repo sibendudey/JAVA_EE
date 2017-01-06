@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.tiles2.TilesViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("spittr.web")
+@ComponentScan(basePackages = {"com.spittr.web" , "com.spittr.data" })
 public class WebConfig extends WebMvcConfigurerAdapter {
 	
 	@Bean
@@ -55,10 +55,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	configurer.enable();
 	}
 	
-	/*@Override
+	@Override
 	public void addResourceHandlers( final ResourceHandlerRegistry registry)	{
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-	}*/
+	}
 	
 }
 	
