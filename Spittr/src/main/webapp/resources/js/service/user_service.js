@@ -3,7 +3,7 @@
  */
 
 app.factory('UserService' , [ '$http' , '$q' , function($http, $q)	{
-	var REST_SERVICE_API = 'http://localhost:8080/Spittr/';
+	var REST_SERVICE_API = 'http://localhost:8082/spittr/';
 
 	var factory = {
 			fetchSpitters: fetchSpitters,
@@ -18,7 +18,7 @@ app.factory('UserService' , [ '$http' , '$q' , function($http, $q)	{
 	
 	function fetchSpitters()	{
 		var deferred = $q.defer();
-		$http.get(fetchSpitters).then( function (response)	{
+		$http.get(REST_SERVICE_API + "/spitter/fetchSpitters" ).then( function (response)	{
 			deferred.resolve(response.data);
 		},
 		function(errResponse)	{
@@ -31,7 +31,7 @@ app.factory('UserService' , [ '$http' , '$q' , function($http, $q)	{
 	
 	function createSpitter(spitter)	{
 		var deferred = $q.defer();
-		$http.post(REST_SERVICE_API , spitter).then( function (response)	{
+		$http.post(REST_SERVICE_API + "" , spitter).then( function (response)	{
 			deferred.resolve(response.data);
 		},
 		function(errResponse)	{

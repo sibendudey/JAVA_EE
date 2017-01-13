@@ -3,8 +3,14 @@ package com.spittr;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document( collection = "spitter")
 public class Spitter {
-	private long _ID;
+	
+	@Id
+	private String _ID;
 	
 	@NotNull
 	@Size(min=5, max=25 , message= "{firstName.size}")
@@ -47,6 +53,10 @@ public class Spitter {
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	
+	public String getID()	{
+		return _ID;
 	}
 
 }
