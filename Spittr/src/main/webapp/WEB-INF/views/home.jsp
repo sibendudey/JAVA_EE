@@ -55,7 +55,7 @@
               <div class="panel-heading"><span class="lead">User Registration Form </span></div>
               <div class="formcontainer">
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
-                      <input type="hidden" ng-model="ctrl.spitter.id" />
+                      <input type="hidden" ng-model="ctrl.spitter.userID" />
                       <div class="row">
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="firstname">First name:</label>
@@ -88,7 +88,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="username">username:</label>
                               <div class="col-md-7">
-                                  <input type="password" ng-model="ctrl.spitter.userName" id="username" class="form-control input-sm" placeholder="Enter your username"/>
+                                  <input type="text" ng-model="ctrl.spitter.userName" id="username" class="form-control input-sm" placeholder="Enter your username"/>
                                    <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.username.$error.required">This is a required field</span>
                                       <span ng-show="myForm.username.$error.minlength">Minimum length required is 3</span>
@@ -102,7 +102,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="email">password: </label>
                               <div class="col-md-7">
-                                  <input type="password" ng-model="ctrl.user.password" id="password" class="password form-control input-sm" placeholder="Enter your password" required/>
+                                  <input type="password" ng-model="ctrl.spitter.password" id="password" class="password form-control input-sm" placeholder="Enter your password" required/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.password.$error.required">This is a required field</span>
                                       <span ng-show="myForm.password.$invalid">This field is invalid </span>
@@ -113,7 +113,7 @@
  
                       <div class="row">
                           <div class="form-actions floatRight">
-                              <input type="submit"  value="{{!ctrl.spitter.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                              <input type="submit"  value="{{!ctrl.spitter.userID ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
                               <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
                           </div>
                       </div>
@@ -136,12 +136,12 @@
                       </thead>
                       <tbody>
                           <tr ng-repeat="u in ctrl.spitters">
-                              <td><span ng-bind="u.id"></span></td>
+                              <td><span ng-bind="u.userID"></span></td>
                               <td><span ng-bind="u.userName"></span></td>
                               <td><span ng-bind="u.firstName"></span></td>
                               <td><span ng-bind="u.lastName"></span></td>
                               <td>
-                              <button type="button" ng-click="ctrl.edit(u.id)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.id)" class="btn btn-danger custom-width">Remove</button>
+                              <button type="button" ng-click="ctrl.edit(u.userID)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.userID)" class="btn btn-danger custom-width">Remove</button>
                               </td>
                           </tr>
                       </tbody>

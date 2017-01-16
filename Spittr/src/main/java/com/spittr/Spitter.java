@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Spitter {
 	
 	@Id
-	private String _ID;
+	private String userID;
 	
 	@NotNull
 	@Size(min=5, max=25 , message= "{firstName.size}")
@@ -31,7 +31,6 @@ public class Spitter {
 	public String getFirstName() {
 		return firstName;
 	}
-	
 	
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -55,8 +54,12 @@ public class Spitter {
 		this.userName = userName;
 	}
 	
-	public String getID()	{
-		return _ID;
+	public String getUserID()	{
+		return userID;
+	}
+
+	public void setUserID(long userID) {
+		this.userID = Long.toString(userID);
 	}
 
 }

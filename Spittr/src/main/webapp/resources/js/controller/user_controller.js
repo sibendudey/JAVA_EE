@@ -4,11 +4,12 @@
 
 app.controller('UserController' , ['$scope', 'UserService', function($scope, UserService)	{
 	var self = this;
-	self.spitter = {id:null , firstName: '' , lastName: '' , email: ''};
+	self.spitter = {userID:null , firstName: '' , lastName: '' , email: ''};
 	self.spitters = [];
 	self.submit = submit;
 	self.remove = remove;
 	self.reset = reset;
+	self.edit = edit;
 	
 	fetchSpitters();
 	
@@ -26,11 +27,26 @@ app.controller('UserController' , ['$scope', 'UserService', function($scope, Use
 			fetchSpitters();
 		},
 		function(errResponse)	{
-			console.error('Error while fetching spitters');
+			console.error('Error while creating spitter');
 		});
 	}
 	
-	function fetchSpitters()	{
+	function deleteSpitter(spitterID)	{
+		UserService.deleteSpitter(spitterID).then( fetchSpitters,
+				function(errResponse)	{
+			console.error("Error while deleting spitters");
+		});
+	}
+	
+	function updateSpitter(spitter)	{
+		UserService.updateSpitter(spitter).then ( fetchSpitters,
+				function(errResponse)	{
+			console.error("Error while updating spitter")
+		});
+	}
+	
+	
+	/*function fetchSpitters()	{
 		UserService.fetchSpitters().then(function(d)	{
 			self.spitters = d;
 		},
@@ -64,24 +80,24 @@ app.controller('UserController' , ['$scope', 'UserService', function($scope, Use
 		function(errResponse)	{
 			console.error('Error while fetching spitters');
 		});
-	}
+	}*/
 	
 	function submit() {
-        if(self.user.id===null){
+        if(self.spitter.userID === null){
             console.log('Saving New User', self.user);
-            createUser(self.user);
+            createSpitter(self.spitter);
         }else{
-            updateUser(self.user, self.user.id);
-            console.log('User updated with id ', self.user.id);
+            updateSpitter(self.spitter);
+            console.log('User updated with id ', self.spitter.userID);
         }
         reset();
     }
 	
 	function edit(id){
         console.log('id to be edited', id);
-        for(var i = 0; i < self.users.length; i++){
-            if(self.users[i].id === id) {
-                self.user = angular.copy(self.users[i]);
+        for(var i = 0; i < self.spitters.length; i++){
+            if(self.spitters[i].userID === id) {
+                self.spitter = angular.copy(self.spitters[i]);
                 break;
             }
         }
@@ -89,14 +105,14 @@ app.controller('UserController' , ['$scope', 'UserService', function($scope, Use
  
     function remove(id){
         console.log('id to be deleted', id);
-        if(self.user.id === id) {//clean form if the user to be deleted is shown there.
+        if(self.spitter.userID === id) {//clean form if the user to be deleted is shown there.
             reset();
         }
-        deleteUser(id);
+        deleteSpitter(id);
     }
     
     function reset(){
-        self.user={id:null,username:'',address:'',email:''};
+        self.spitter={userID:null,username:'',address:'',email:''};
         $scope.myForm.$setPristine(); //reset Form
     }
 }])

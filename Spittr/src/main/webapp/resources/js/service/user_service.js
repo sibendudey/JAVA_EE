@@ -8,6 +8,7 @@ app.factory('UserService' , [ '$http' , '$q' , function($http, $q)	{
 	var factory = {
 			fetchSpitters: fetchSpitters,
 			createSpitter: createSpitter,
+			deleteSpitter: deleteSpitter,
 			updateSpitter: updateSpitter,
 			createSpittle: createSpittle,
 			updateSpittle: updateSpittle,
@@ -31,7 +32,7 @@ app.factory('UserService' , [ '$http' , '$q' , function($http, $q)	{
 	
 	function createSpitter(spitter)	{
 		var deferred = $q.defer();
-		$http.post(REST_SERVICE_API + "" , spitter).then( function (response)	{
+		$http.post(REST_SERVICE_API + "spitter/createSpitter" , spitter).then( function (response)	{
 			deferred.resolve(response.data);
 		},
 		function(errResponse)	{
@@ -42,16 +43,30 @@ app.factory('UserService' , [ '$http' , '$q' , function($http, $q)	{
 		return deferred.promise;
 	}
 	
-	function updateSpitter()	{
+	
+	function deleteSpitter(spitterID)	{
 		var deferred = $q.defer();
-		$http.get(fetchSpitters).then( function (response)	{
+		$http.get(REST_SERVICE_API + "spitter/deleteSpitter/" + spitterID).then( function( response)	{
 			deferred.resolve(response.data);
 		},
 		function(errResponse)	{
-			console.error('Error while fetching Users');
+			console.error('Error while deleting spitter');
+			deferred.reject(errResponse);
+		});
+		
+		return deferred.promise;
+	}
+	
+	function updateSpitter(spitter)	{
+		var deferred = $q.defer();
+		$http.post(REST_SERVICE_API + "spitter/updateSpitter" , spitter).then( function (response)	{
+			deferred.resolve(response.data);
+		},
+		function(errResponse)	{
+			console.error('Error while creating spitter');
 			deferred.reject(errResponse);
 		}
-	);
+		);
 		return deferred.promise;
 	}
 	
